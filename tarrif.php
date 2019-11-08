@@ -1,7 +1,8 @@
 <?php
 //question two
 
-function getStatistics() {
+function getStatistics()
+{
   $data = [];
   $data['users'] = [];
   // 65k rows
@@ -29,7 +30,7 @@ function getStatistics() {
       }
       $one['total']++;
     }
-     $one['cash'] = number_format($one['cash'],2);
+    $one['cash'] = number_format($one['cash'], 2);
     array_push($data['users'], $one);
   }
   return $data;
@@ -37,34 +38,25 @@ function getStatistics() {
 
 
 //optimized query
-function optimizedGetStatistics() {
-  $data = [];
-  $data['users'] = [];
+function optimizedGetStatistics()
+{
   // 65k rows
   $allTptp = TariffProviderTariffMatch::all();
-  $allTptpDetails=$allTptp->pluck('first_name','last_name','valid','pending','invalid','total','cash','active_status');
+  $allTptpDetails = $allTptp->pluck('first_name', 'last_name', 'valid', 'pending', 'invalid', 'total', 'cash', 'active_status');
   foreach ($allTptpDetails as $allTptpDetail) {
-      switch ($allTptpDetail->active_status) {
-        case ActiveStatus::ACTIVE: // 1
-          $allTptpDetail['valid']++;
-          $allTptpDetail['cash'] += floatval(GlobalVariable::getById(GlobalVariable::STANDARDIZATION_UNIT_PRICE)->value);
-          break;
-        case ActiveStatus::PENDING: // 2
-          $allTptpDetail['pending']++;
-          break;
-        case ActiveStatus::DELETED: // 3
-          $allTptpDetail['invalid']++;
-          break;
-      }
-      
+    switch ($allTptpDetail->active_status) {
+      case ActiveStatus::ACTIVE: // 1
+        $allTptpDetail['valid']++;
+        $allTptpDetail['cash'] += floatval(GlobalVariable::getById(GlobalVariable::STANDARDIZATION_UNIT_PRICE)->value);
+        break;
+      case ActiveStatus::PENDING: // 2
+        $allTptpDetail['pending']++;
+        break;
+      case ActiveStatus::DELETED: // 3
+        $allTptpDetail['invalid']++;
+        break;
     }
- $total=count($allTptp);   
-return ['total'=>$total, 'allTptp'=>$allTptpDetails];
+  }
+  $total = count($allTptp);
+  return ['total' => $total, 'allTptp' => $allTptpDetails];
 }
-
-
-
-
-
-
-
