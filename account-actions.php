@@ -8,6 +8,10 @@ if(array_key_exists('reserve-account', $_POST)) {
         else if(array_key_exists('login', $_POST)) { 
         	$string = $_POST['email'].":".$_POST['password'];
             login($string); 
+        }elseif (array_key_exists('deallocate-reserved-account', $_POST)) {
+        	deallocateReservedAccount();
+        }elseif (array_key_exists('get-transaction-status', $_POST)) {
+        	getTransactionsStatus();
         } else{
         	echo "no action specified";
         }
@@ -24,8 +28,10 @@ $method="post";
 	apiCall($apiEndpoint, $reqHeaders, $reqBody, $method);
 }
 
-function deactivateReservedAccount(){
-	$apiEndpoint="htts://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/{accountNumber}";
+function deallocateReservedAccount(){
+	$reqHeaders=variablesHelper::reqHeaders();
+    $reqBody=variablesHelper::reqBody();
+	$apiEndpoint="https://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/9900725554";
 	$method="delete";
 	apiCall($apiEndpoint, $reqHeaders, $reqBody, $method);
 }
@@ -33,9 +39,8 @@ function deactivateReservedAccount(){
 function getTransactionsStatus(){
 	$reqHeaders=variablesHelper::reqHeaders();
     $reqBody=variablesHelper::reqBody();
-	$apiEndpoint="https://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/transactions
-?accountReference={accountReference}&page=0&size=10";
-apiCall($apiEndpoint, $reqHeaders, $reqBody, $method);
+	$apiEndpoint="https://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/transactions?accountReference=reference12345&page=0&size=10";
+apiCall($apiEndpoint, $reqHeaders, $reqBody, $method='get');
 
 }
 
@@ -44,7 +49,7 @@ apiCall($apiEndpoint, $reqHeaders, $reqBody, $method);
 function login($string){
 $authData=encodeToBase64($string);	
  $apiEndpoint="https://sandbox.monnify.com/api/v1/auth/login";
- $reqHeaders=array("Authorization: Basic ZGVtbzpwQDU1dzByZA==");
+ $reqHeaders=array("Authorization "=>"Basic ZGVtbzpwQDU1dzByZA==");
  //$reqHeaders=array("Authorization: Basic ".$authData);
  apiCall($apiEndpoint,$reqHeaders,$reqBody='',$method='post');
 }
