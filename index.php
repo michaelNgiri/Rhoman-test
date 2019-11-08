@@ -17,7 +17,7 @@
     		background: #deebff;
     		color: blue;
     	}
-    	main{
+    	.form-wrapper{
     		 margin-left: 120px;
     	}
     </style>
@@ -25,25 +25,30 @@
 <h1>An API call test form</h1>
 <body>
     <main>
-    	<div class="form-group login">
-    	<form action="account-actions.php" method="post">
-    	<label>Email:
-    		<input required="" class="input" type="email" name="email">
-    	</label><br>
-    	<label>Password:
-    		<input required="" class="input" type="password" name="password">
-    	</label>	
-        <input type="hidden" name="login"><br>
-        <button type="submit">Login</button>
-    </form>
-    </div>
-<hr>
-    <div class="form-group">
-    	<form action="account-actions.php" method="post">
-        <input type="hidden" name="reserve-account">
-        <button type="submit">Reserve Account</button>
-    </form>
-    </div>
+    	<div class="form-wrapper">
+    		<div class="form-group login">
+		    	<form action="account-actions.php" method="post">
+
+			    	<label>Email:
+			    	<input required="" class="input" type="text" name="email">
+			    	</label><br>
+
+			    	<label>Password:
+			    		<input required="" class="input" type="password" name="password">
+			    	</label>
+
+			        <input type="hidden" name="login"><br>
+			        <button type="submit">Login</button>
+			    </form>
+		    </div><hr>
+
+		    <div class="form-group">
+		    	<form action="account-actions.php" method="post">
+		        <input type="hidden" name="reserve-account">
+		        <button type="submit">Reserve Account</button>
+		    </form>
+		    </div>
+   </div>
     </main>
 </body>
 </html>
