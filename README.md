@@ -7,4 +7,10 @@
 `deactivate a reserved account`
 
 /////////
-`additional tests
+`additional tests`
+
+
+##How to use the app
+*1* Clone from `https://github.com/michaelNgiri/Rhoman-test.git` to your local server.
+*2* Run `composer install` from the command line.
+*3* visit `localhost/Rhoman-test` to view the application.
