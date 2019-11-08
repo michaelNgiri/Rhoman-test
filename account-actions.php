@@ -35,6 +35,7 @@ function getTransactionsStatus(){
     $reqBody=variablesHelper::reqBody();
 	$apiEndpoint="https://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/transactions
 ?accountReference={accountReference}&page=0&size=10";
+apiCall($apiEndpoint, $reqHeaders, $reqBody, $method);
 
 }
 
