@@ -1,6 +1,6 @@
-###Reliance HMO coding interview
+###Reliance HMO coding interview###
 
-##Features
+##Features##
 `login`
 `reserve an account`
 `get transaction status`
@@ -10,7 +10,9 @@
 `additional tests`
 
 
-##How to use the app
+##How to use the app##
 *1* Clone from `https://github.com/michaelNgiri/Rhoman-test.git` to your local server.
 *2* Run `composer install` from the command line.
 *3* visit `localhost/Rhoman-test` to view the application.
+
+*4* run `vendor/bin/phpunit` to for test cases
