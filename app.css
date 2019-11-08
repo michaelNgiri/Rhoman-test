@@ -1,0 +1,40 @@
+.input {
+			padding: 0.4em;
+			margin-bottom: 10px;
+			clear: both;
+
+			border-radius: 4px;
+		}
+
+		button {
+			padding: 8px;
+		}
+
+		body {
+			background: #deebff;
+			color: blue;
+		}
+
+		.form-wrapper {
+			margin-left: 120px;
+		}
+
+		button {
+			color: #fff;
+			background: blue;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+
+		h1 {
+			text-align: center;
+		}
+		#api-form{
+			display: none;
+		}
+		#info{
+			color: gray;
+		}
+		#response{
+			color: darkred!important;
+		}

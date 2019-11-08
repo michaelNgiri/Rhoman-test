@@ -35,12 +35,11 @@ function encodeToBase64($string)
 class variablesHelper
 {
 
-   public function reqHeaders()
+   public function reqHeaders($authorization)
    {
       return array(
          "Content-Type" => "application/json",
-         "Authorization" => "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-      "
+         "Authorization" => "Bearer ".$authorization
       );
    }
 

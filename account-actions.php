@@ -24,7 +24,8 @@ class getMonnifyFeatures
 {
     public function reserveAccount()
     {
-        $reqHeaders = variablesHelper::reqHeaders();
+        $authorization=$_POST['authorization'];
+        $reqHeaders = variablesHelper::reqHeaders($authorization);
         $reqBody = variablesHelper::reqBody();
         $method = 'post';
         // $apiKey='';
@@ -35,7 +36,8 @@ class getMonnifyFeatures
 
     public function deallocateReservedAccount()
     {
-        $reqHeaders = variablesHelper::reqHeaders();
+        $authorization=$_POST['authorization'];
+        $reqHeaders = variablesHelper::reqHeaders($authorization);
         $reqBody = variablesHelper::reqBody();
         $apiEndpoint = "https://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/9900725554";
         $method = "delete";
@@ -44,7 +46,8 @@ class getMonnifyFeatures
 
     public function getTransactionsStatus()
     {
-        $reqHeaders = variablesHelper::reqHeaders();
+        $authorization=$_POST['authorization'];
+        $reqHeaders = variablesHelper::reqHeaders($authorization);
         $reqBody = variablesHelper::reqBody();
         $apiEndpoint = "https://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/transactions?accountReference=reference12345&page=0&size=10";
         apiCall($apiEndpoint, $reqHeaders, $reqBody, $method = 'get');
