@@ -3,22 +3,33 @@ include 'functions.php';
 
 //check which button the user clicked and
 if(array_key_exists('reserve-account', $_POST)) { 
-            reserveAccount(); 
+           getMonnifyFeatures::reserveAccount(); 
         } 
         else if(array_key_exists('login', $_POST)) { 
         	$string = $_POST['email'].":".$_POST['password'];
-            login($string); 
+            getMonnifyFeatures::login($string); 
         }elseif (array_key_exists('deallocate-reserved-account', $_POST)) {
-        	deallocateReservedAccount();
+        	getMonnifyFeatures::deallocateReservedAccount();
         }elseif (array_key_exists('get-transaction-status', $_POST)) {
-        	getTransactionsStatus();
+        	getMonnifyFeatures::getTransactionsStatus();
         } else{
         	echo "no action specified";
         }
 
  
 
-function reserveAccount(){
+
+
+
+
+
+
+/**
+ * 
+ */
+class getMonnifyFeatures
+{
+   public function reserveAccount(){
 $reqHeaders=variablesHelper::reqHeaders();
 $reqBody=variablesHelper::reqBody();
 $method='post';
@@ -28,7 +39,7 @@ $method="post";
 	apiCall($apiEndpoint, $reqHeaders, $reqBody, $method);
 }
 
-function deallocateReservedAccount(){
+public function deallocateReservedAccount(){
 	$reqHeaders=variablesHelper::reqHeaders();
     $reqBody=variablesHelper::reqBody();
 	$apiEndpoint="https://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/9900725554";
@@ -36,7 +47,7 @@ function deallocateReservedAccount(){
 	apiCall($apiEndpoint, $reqHeaders, $reqBody, $method);
 }
 
-function getTransactionsStatus(){
+public function getTransactionsStatus(){
 	$reqHeaders=variablesHelper::reqHeaders();
     $reqBody=variablesHelper::reqBody();
 	$apiEndpoint="https://sandbox.monnify.com/api/v1/bank-transfer/reserved-accounts/transactions?accountReference=reference12345&page=0&size=10";
@@ -44,8 +55,7 @@ apiCall($apiEndpoint, $reqHeaders, $reqBody, $method='get');
 
 }
 
-
-//login to get authentication token
+ public //login to get authentication token
 function login($string){
 $authData=encodeToBase64($string);	
  $apiEndpoint="https://sandbox.monnify.com/api/v1/auth/login";
@@ -53,4 +63,8 @@ $authData=encodeToBase64($string);
  //$reqHeaders=array("Authorization: Basic ".$authData);
  apiCall($apiEndpoint,$reqHeaders,$reqBody='',$method='post');
 }
+}
+
+
+
 

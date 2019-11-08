@@ -25,6 +25,8 @@ function encodeToBase64($string){
    return base64_encode( $string );
 }
 
+
+
 /**
  * 
  */
